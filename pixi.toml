@@ -1,0 +1,22 @@
+[project]
+authors = ["CormacKinsella <27350062+CormacKinsella@users.noreply.github.com>"]
+channels = ["conda-forge", "bioconda"]
+name = "Original nanoseq pipeline, attempting to get it running"
+platforms = ["linux-64"]
+version = "0.1.0"
+
+[tasks]
+test = { cmd = "nextflow main.nf --ref /home/cormac/sandbox/nanoseq-original-test-env/data/genome.fa --sample_sheet /home/cormac/sandbox/nanoseq-original-test-env/data/samplesheet.csv" }
+
+
+[dependencies]
+nextflow=">=24.10.4"
+graphviz=">=12.2.1"
+python="==3.8.5"
+perl="==5.32.1"
+perl-file-which="==1.24"
+perl-capture-tiny="==0.48"
+r-base="==4.4.2"
+samtools="==1.21"
+biobambam="==2.0.185"
+bwa-mem2="==2.2.1"

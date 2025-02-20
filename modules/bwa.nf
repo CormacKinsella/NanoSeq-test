@@ -73,10 +73,10 @@ process BWAMEM2_MAP {
     maxForks MAX_IN_PARALLEL
     clusterOptions "-R avx512" //ask for a node with latest vector instructions
 
-    cpus 10
-    maxRetries 4
-    memory { ( task.exitStatus == 130 || task.exitStatus == 140) ? 50.GB * task.attempt : 50.GB }
-    queue { task.exitStatus == 140 ? "basement" : QUEUE }
+    //cpus 10
+    //maxRetries 4
+    //memory { ( task.exitStatus == 130 || task.exitStatus == 140) ? 50.GB * task.attempt : 50.GB }
+    //queue { task.exitStatus == 140 ? "basement" : QUEUE }
 
     script:
         def args = task.ext.args ?: '-C'

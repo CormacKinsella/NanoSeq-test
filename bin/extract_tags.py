@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 
 ########## LICENCE ##########
 # Copyright (c) 2022 Genome Research Ltd
@@ -69,7 +69,6 @@ from the read sequence to rb and mb auxiliary tags.
     2 skips [TR or XT]
     146 non-adaptor read
 """
-
 
 class Read:
 

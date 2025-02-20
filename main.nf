@@ -29,7 +29,7 @@ params.outDir = baseDir
 // *** Preprocessing and mapping params
 params.fastq_tags_m = 3
 params.fastq_tags_s = 4
-params.nanoseq_dedup_m = 1 # bug found by ao7. It was not used later though.
+params.nanoseq_dedup_m = 1 // bug found by ao7. It was not used later though.
 
 // *** NanoSeq parameters
 params.jobs = 100
@@ -306,15 +306,16 @@ workflow {
 
         MAP = MAP_FASTQ( ch_fastq_ss , reference_path )
 
-    } else { //cram input
+    } else { //cram input //TODO: CMK - says cram but I think this might capture either cram or bam input in the same logic flow
 
         //Merge normal's and duplex's into one channel
         ch_cram_ss = input_ss.duplex.mix( input_ss.normal ).map{ 
             it[0]["name"] = it[0].id + "_" + it[0].type
             it  }
 
-        ch_cram = ch_cram_ss
-    }
+        ch_cram = ch_cram_ss // TODO: CMK - They assign ch_cram_ss here to ch_cram. Then map on the original channel. If a remapped CRAM, or a CRAM from fq mapping, ch_cram gets reassigned
+    }                        // so essentially if cram + indexes provided, it goes straight into NANOSEQ_ADD_RB. If fastq provided or remap, it's mapped, marked, and then goes into NANOSEQ_ADD_RB
+							 // can replicate this cleaner with a mix operator on the respective input channels, same with markdups. it can mix the "fq -> cram", and "user cram" channels
     
     if ( reMapIn ) { //remapping
 

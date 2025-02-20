@@ -21,7 +21,6 @@ process ADD_NANOSEQ_FASTQ_TAGS {
     // *MODIFIED* (ao7): added task.exitStatus == Integer.MAX_VALUE;
     //                   the default value of task.exitStatus in the absence of an .exitcode file for the previous execution
     //memory { ( task.exitStatus == 130 ) ? 500.MB * task.attempt : 500.MB }
-    memory { ( task.exitStatus == 130 || task.exitStatus == Integer.MAX_VALUE ) ? 500.MB * task.attempt : 500.MB }
 
     script:
         def read1 = reads[0]
@@ -71,8 +70,8 @@ process MARKDUP {
     //                   the default value of task.exitStatus in the absence of an .exitcode file for the previous execution
     // memory { ( task.exitStatus == 130 || task.exitStatus == 140) ? 25.GB * task.attempt : 25.GB }
     // queue { task.exitStatus == 140 ? "long" : "normal" }
-    memory { ( task.exitStatus == 130 || task.exitStatus == 140 || task.exitStatus == Integer.MAX_VALUE ) ? 40.GB * task.attempt : 40.GB }
-    queue { ( task.exitStatus == 140 || task.exitStatus == Integer.MAX_VALUE ) ? "long" : "normal" }
+    //memory { ( task.exitStatus == 130 || task.exitStatus == 140 || task.exitStatus == Integer.MAX_VALUE ) ? 40.GB * task.attempt : 40.GB }
+    //queue { ( task.exitStatus == 140 || task.exitStatus == Integer.MAX_VALUE ) ? "long" : "normal" }
     //
 
     script:
@@ -303,9 +302,9 @@ process NANOSEQ_EFFI {
     // *MODIFIED* (ao7): added task.exitStatus == Integer.MAX_VALUE;
     //                   the default value of task.exitStatus in the absence of an .exitcode file for the previous execution
     //memory { task.exitStatus == 130  ? 25.GB * task.attempt : 25.GB }
-    memory { ( task.exitStatus == 130 || task.exitStatus == Integer.MAX_VALUE ) ? 25.GB * task.attempt : 25.GB }
+    //memory { ( task.exitStatus == 130 || task.exitStatus == Integer.MAX_VALUE ) ? 25.GB * task.attempt : 25.GB }
     //
-    errorStrategy { task.attempt == MAXN ? 'ignore' : 'retry' }
+    //errorStrategy { task.attempt == MAXN ? 'ignore' : 'retry' }
 
     script:
         def cpus = task.cpus - 1

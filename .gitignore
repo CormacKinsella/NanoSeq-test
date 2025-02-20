@@ -2,3 +2,11 @@ bugfix-scratch/
 *.sif
 notes/
 .vscode/
+.nextflow
+# pixi environments
+.pixi
+*.egg-info
+work/
+.nextflow.log*
+Nextflow/data/
+data/
